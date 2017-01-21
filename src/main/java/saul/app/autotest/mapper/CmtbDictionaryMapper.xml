@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="saul.app.autotest.dao.CmtbDictionaryMapper">
+    <resultMap id="BaseResultMap" type="saul.app.autotest.model.CmtbDictionary">
+        <id column="cd_id" property="cdId" jdbcType="INTEGER"/>
+        <result column="cd_name" property="cdName" jdbcType="VARCHAR"/>
+        <result column="cd_type" property="cdType" jdbcType="VARCHAR"/>
+        <result column="cd_f_ids" property="cdFIds" jdbcType="VARCHAR"/>
+        <result column="cd_value" property="cdValue" jdbcType="VARCHAR"/>
+        <result column="cd_text" property="cdText" jdbcType="VARCHAR"/>
+        <result column="cd_status" property="cdStatus" jdbcType="VARCHAR"/>
+        <result column="cd_createtime" property="cdCreatetime" jdbcType="VARCHAR"/>
+        <result column="cd_createuser" property="cdCreateuser" jdbcType="VARCHAR"/>
+        <result column="cd_updatetime" property="cdUpdatetime" jdbcType="VARCHAR"/>
+        <result column="cd_updateuser" property="cdUpdateuser" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    cd_id, cd_name, cd_type, cd_f_ids, cd_value, cd_text, cd_status, cd_createtime, cd_createuser, 
+    cd_updatetime, cd_updateuser
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap"
+            parameterType="saul.app.autotest.model.CmtbDictionaryCriteria">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from cmtb_dictionary
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from cmtb_dictionary
+        where cd_id = #{cdId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cmtb_dictionary
+    where cd_id = #{cdId,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByExample" parameterType="saul.app.autotest.model.CmtbDictionaryCriteria">
+        delete from cmtb_dictionary
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="saul.app.autotest.model.CmtbDictionary">
+    insert into cmtb_dictionary (cd_id, cd_name, cd_type, 
+      cd_f_ids, cd_value, cd_text, 
+      cd_status, cd_createtime, cd_createuser, 
+      cd_updatetime, cd_updateuser)
+    values (#{cdId,jdbcType=INTEGER}, #{cdName,jdbcType=VARCHAR}, #{cdType,jdbcType=VARCHAR}, 
+      #{cdFIds,jdbcType=VARCHAR}, #{cdValue,jdbcType=VARCHAR}, #{cdText,jdbcType=VARCHAR}, 
+      #{cdStatus,jdbcType=VARCHAR}, #{cdCreatetime,jdbcType=VARCHAR}, #{cdCreateuser,jdbcType=VARCHAR}, 
+      #{cdUpdatetime,jdbcType=VARCHAR}, #{cdUpdateuser,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="saul.app.autotest.model.CmtbDictionary">
+        insert into cmtb_dictionary
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cdId != null">
+                cd_id,
+            </if>
+            <if test="cdName != null">
+                cd_name,
+            </if>
+            <if test="cdType != null">
+                cd_type,
+            </if>
+            <if test="cdFIds != null">
+                cd_f_ids,
+            </if>
+            <if test="cdValue != null">
+                cd_value,
+            </if>
+            <if test="cdText != null">
+                cd_text,
+            </if>
+            <if test="cdStatus != null">
+                cd_status,
+            </if>
+            <if test="cdCreatetime != null">
+                cd_createtime,
+            </if>
+            <if test="cdCreateuser != null">
+                cd_createuser,
+            </if>
+            <if test="cdUpdatetime != null">
+                cd_updatetime,
+            </if>
+            <if test="cdUpdateuser != null">
+                cd_updateuser,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cdId != null">
+                #{cdId,jdbcType=INTEGER},
+            </if>
+            <if test="cdName != null">
+                #{cdName,jdbcType=VARCHAR},
+            </if>
+            <if test="cdType != null">
+                #{cdType,jdbcType=VARCHAR},
+            </if>
+            <if test="cdFIds != null">
+                #{cdFIds,jdbcType=VARCHAR},
+            </if>
+            <if test="cdValue != null">
+                #{cdValue,jdbcType=VARCHAR},
+            </if>
+            <if test="cdText != null">
+                #{cdText,jdbcType=VARCHAR},
+            </if>
+            <if test="cdStatus != null">
+                #{cdStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="cdCreatetime != null">
+                #{cdCreatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="cdCreateuser != null">
+                #{cdCreateuser,jdbcType=VARCHAR},
+            </if>
+            <if test="cdUpdatetime != null">
+                #{cdUpdatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="cdUpdateuser != null">
+                #{cdUpdateuser,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="saul.app.autotest.model.CmtbDictionaryCriteria"
+            resultType="java.lang.Integer">
+        select count(*) from cmtb_dictionary
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update cmtb_dictionary
+        <set>
+            <if test="record.cdId != null">
+                cd_id = #{record.cdId,jdbcType=INTEGER},
+            </if>
+            <if test="record.cdName != null">
+                cd_name = #{record.cdName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cdType != null">
+                cd_type = #{record.cdType,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cdFIds != null">
+                cd_f_ids = #{record.cdFIds,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cdValue != null">
+                cd_value = #{record.cdValue,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cdText != null">
+                cd_text = #{record.cdText,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cdStatus != null">
+                cd_status = #{record.cdStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cdCreatetime != null">
+                cd_createtime = #{record.cdCreatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cdCreateuser != null">
+                cd_createuser = #{record.cdCreateuser,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cdUpdatetime != null">
+                cd_updatetime = #{record.cdUpdatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cdUpdateuser != null">
+                cd_updateuser = #{record.cdUpdateuser,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update cmtb_dictionary
+        set cd_id = #{record.cdId,jdbcType=INTEGER},
+        cd_name = #{record.cdName,jdbcType=VARCHAR},
+        cd_type = #{record.cdType,jdbcType=VARCHAR},
+        cd_f_ids = #{record.cdFIds,jdbcType=VARCHAR},
+        cd_value = #{record.cdValue,jdbcType=VARCHAR},
+        cd_text = #{record.cdText,jdbcType=VARCHAR},
+        cd_status = #{record.cdStatus,jdbcType=VARCHAR},
+        cd_createtime = #{record.cdCreatetime,jdbcType=VARCHAR},
+        cd_createuser = #{record.cdCreateuser,jdbcType=VARCHAR},
+        cd_updatetime = #{record.cdUpdatetime,jdbcType=VARCHAR},
+        cd_updateuser = #{record.cdUpdateuser,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="saul.app.autotest.model.CmtbDictionary">
+        update cmtb_dictionary
+        <set>
+            <if test="cdName != null">
+                cd_name = #{cdName,jdbcType=VARCHAR},
+            </if>
+            <if test="cdType != null">
+                cd_type = #{cdType,jdbcType=VARCHAR},
+            </if>
+            <if test="cdFIds != null">
+                cd_f_ids = #{cdFIds,jdbcType=VARCHAR},
+            </if>
+            <if test="cdValue != null">
+                cd_value = #{cdValue,jdbcType=VARCHAR},
+            </if>
+            <if test="cdText != null">
+                cd_text = #{cdText,jdbcType=VARCHAR},
+            </if>
+            <if test="cdStatus != null">
+                cd_status = #{cdStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="cdCreatetime != null">
+                cd_createtime = #{cdCreatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="cdCreateuser != null">
+                cd_createuser = #{cdCreateuser,jdbcType=VARCHAR},
+            </if>
+            <if test="cdUpdatetime != null">
+                cd_updatetime = #{cdUpdatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="cdUpdateuser != null">
+                cd_updateuser = #{cdUpdateuser,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where cd_id = #{cdId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="saul.app.autotest.model.CmtbDictionary">
+    update cmtb_dictionary
+    set cd_name = #{cdName,jdbcType=VARCHAR},
+      cd_type = #{cdType,jdbcType=VARCHAR},
+      cd_f_ids = #{cdFIds,jdbcType=VARCHAR},
+      cd_value = #{cdValue,jdbcType=VARCHAR},
+      cd_text = #{cdText,jdbcType=VARCHAR},
+      cd_status = #{cdStatus,jdbcType=VARCHAR},
+      cd_createtime = #{cdCreatetime,jdbcType=VARCHAR},
+      cd_createuser = #{cdCreateuser,jdbcType=VARCHAR},
+      cd_updatetime = #{cdUpdatetime,jdbcType=VARCHAR},
+      cd_updateuser = #{cdUpdateuser,jdbcType=VARCHAR}
+    where cd_id = #{cdId,jdbcType=INTEGER}
+  </update>
+</mapper>

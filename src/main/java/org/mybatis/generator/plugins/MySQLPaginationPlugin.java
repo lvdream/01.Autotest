@@ -6,7 +6,7 @@
  * 				fix bugs for the package address
  * Purpose:  Plugin for {@link MySQLPaginationPlugin}
  ***********************************************************************/
-package plugins;
+package org.mybatis.generator.plugins;
 
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.IntrospectedTable;

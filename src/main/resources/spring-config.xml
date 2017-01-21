@@ -65,6 +65,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
           p:dataSource-ref="mysqldataSource" p:configLocation="classpath:mybatis-cfg.xml"
           p:mapperLocations="classpath:saul/app/**/*Mapper.xml"/>
+
     <!-- configLocation为mybatis属性 mapperLocations为所有mapper -->
 
     <!-- spring与mybatis整合配置，扫描所有dao -->

@@ -127,6 +127,13 @@
             <artifactId>mybatis</artifactId>
             <version>${mybatis.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>3.3.9</version>
+        </dependency>
+
         <dependency>
             <groupId>com.jolbox</groupId>
             <artifactId>bonecp</artifactId>

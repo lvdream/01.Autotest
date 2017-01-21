@@ -4,40 +4,16 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
     <!-- Base Define -->
-    <definition name="base.definition" template="/WEB-INF/layouts/classic.jsp"
-                preparer="com.fangda.skylot.mathine.utils.page.PagePreparer">
-        <put-attribute name="header" value="/WEB-INF/basefragments/_header.jsp"/>
-        <put-attribute name="body" value=""/>
-        <put-attribute name="businessJS" value=""/>
-        <put-attribute name="footer" value=""/>
-
-    </definition>
+    <!-- Home Page -->
     <!-- metronic Define -->
     <definition name="metronic.definition" template="/WEB-INF/layouts/classic_metronic.jsp"
-                preparer="com.fangda.skylot.mathine.utils.page.PagePreparer">
+                preparer="saul.app.autotest.utils.PagePreparer">
         <put-attribute name="header" value="/WEB-INF/basefragments/_header_metronic.jsp"/>
         <put-attribute name="nav" value="/WEB-INF/basefragments/_nav_metronic.jsp"/>
         <put-attribute name="menu" value="/WEB-INF/basefragments/_menu_metronic.jsp"/>
         <put-attribute name="body" value=""/>
         <put-attribute name="businessJS" value=""/>
         <put-attribute name="footer" value="/WEB-INF/basefragments/_footer_metronic.jsp"/>
-
-    </definition>
-    <!-- Home Page -->
-    <definition
-            name="/main"
-            extends="base.definition">
-        <put-attribute name="body"
-                       value="/WEB-INF/views/main.jsp"/>
-        <put-attribute name="businessJS"
-                       value="main"/>
-        <put-attribute name="footer" value="/WEB-INF/basefragments/_footer.jsp"/>
-    </definition>
-    <definition
-            name="string"
-            extends="base.definition">
-        <put-attribute name="body"
-                       value="/WEB-INF/views/jsp/strings.jsp"/>
 
     </definition>
     <definition
@@ -49,11 +25,8 @@
                        value="business/{1}"/>
     </definition>
     <definition
-            name="REGEXP:/(test)"
+            name="metronic.iframe"
             extends="metronic.definition" template="/WEB-INF/layouts/classic_iframe.jsp">
-        <put-attribute name="body"
-                       value="/WEB-INF/views/jsp/{1}.jsp"/>
-        <put-attribute name="businessJS"
-                       value="business/{1}/{1}"/>
     </definition>
+
 </tiles-definitions>

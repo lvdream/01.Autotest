@@ -61,7 +61,8 @@
             targetProject="${generator.targetProject}" /> -->
         <!-- 生成DAO的包名和位置 -->
         <javaClientGenerator targetPackage="saul.app.autotest.dao"
-                             targetProject="Autotest" type="XMLMAPPER">
+                             targetProject="Autotest" type="XMLMAPPER" >
+
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <table tableName="%"

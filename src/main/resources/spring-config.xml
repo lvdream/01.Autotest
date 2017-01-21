@@ -3,22 +3,19 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:util="http://www.springframework.org/schema/util"
-       xmlns:jaxws="http://cxf.apache.org/jaxws"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context-3.2.xsd
            http://www.springframework.org/schema/util
-           http://www.springframework.org/schema/util/spring-util-3.2.xsd
-           http://cxf.apache.org/jaxws 
-           http://cxf.apache.org/schemas/jaxws.xsd ">
+           http://www.springframework.org/schema/util/spring-util-3.2.xsd">
     <!-- 配置注解扫描 -->
     <context:annotation-config/>
 
     <!-- 自动扫描的包名 -->
     <context:component-scan
-            base-package="com.fangda.skylot.dao,com.fangda.skylot.service,com.fangda.skylot.utils">
+            base-package="saul.app">
         <context:exclude-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="annotation"
@@ -30,14 +27,6 @@
         <property name="basenames">
             <list>
                 <value>message/messages</value>
-                <value>message/machine</value>
-                <value>message/actionarea</value>
-                <value>message/machineparking</value>
-                <value>message/actionpormotion</value>
-                <value>message/actionfee</value>
-                <value>message/customer</value>
-                <value>message/actionareabusiness</value>
-                <value>message/machineitem</value>
             </list>
         </property>
     </bean>
@@ -52,9 +41,6 @@
                 </value>
                 <value>
                     classpath:system.properties
-                </value>
-                <value>
-                    classpath:client/shiro-client-default.properties
                 </value>
             </list>
 
@@ -78,7 +64,7 @@
     <!-- mybatis文件配置，扫描所有mapper文件 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
           p:dataSource-ref="mysqldataSource" p:configLocation="classpath:mybatis-cfg.xml"
-          p:mapperLocations="classpath:com/fangda/skylot/mapper/**/*Mapper.xml"/>
+          p:mapperLocations="classpath:saul/app/**/*Mapper.xml"/>
     <!-- configLocation为mybatis属性 mapperLocations为所有mapper -->
 
     <!-- spring与mybatis整合配置，扫描所有dao -->
@@ -107,23 +93,5 @@
         </property>
     </bean>
 
-    <bean class="com.fangda.skylot.utils.PagePreparer" id="preparer"/>
-    <!-- 	<bean id="machineActionDao" class="com.fangda.skylot.dao.impl.mathine.IftbMachineActionDAOImpl"/>
-        <bean id="mathineParkingLogDao" class="com.fangda.skylot.dao.impl.mathine.TstbMathineParkingLogDAOImpl"/>
-        WebService的实现Bean定义
-        <bean id="SYNCServiceSkylot" class="com.fangda.skylot.service.impl.actionarea.WSActionAreaServiceImpl">
-            <property name="machineActionDao" ref="machineActionDao"></property>
-            <property name="mathineParkingLogDao" ref="mathineParkingLogDao"></property>
-        </bean>
-        web services
-        jax-ws endpoint定义
-        <jaxws:endpoint address="/soap/SYNCServiceSkylot"  implementorClass="com.fangda.skylot.service.impl.actionarea.WSActionAreaServiceImpl">
-            <jaxws:features>
-                <wsa:addressing xmlns:wsa="http://cxf.apache.org/ws/addressing" />
-            </jaxws:features>
-        </jaxws:endpoint> -->
-    <jaxws:endpoint id="wSActionAreaService" implementor="#WSActionAreaService" address="/soap/SYNCServiceSkylot"/>
-
-    <!-- 导入client.xml文件 -->
-    <import resource="client/spring-client.xml"/>
+    <bean class="saul.app.autotest.utils.PagePreparer" id="preparer"/>
 </beans>

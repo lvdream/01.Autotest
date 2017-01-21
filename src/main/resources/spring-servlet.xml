@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+            http://www.springframework.org/schema/beans   
+            http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+            http://www.springframework.org/schema/context   
+            http://www.springframework.org/schema/context/spring-context-4.2.xsd
+            http://www.springframework.org/schema/mvc   
+            http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
+
+    <!-- 默认的注解映射的支持 ,它会自动注册DefaultAnnotationHandlerMapping 与AnnotationMethodHandlerAdapter -->
+    <mvc:annotation-driven/>
+    <context:annotation-config/>
+    <context:component-scan base-package="com.fangda.skylot.web">
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.stereotype.Component"/>
+    </context:component-scan>
+
+
+    <!-- 2015/04/30 add by rick 激活自动代理功能 -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <bean id="jacksonMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+    <mvc:resources mapping="/plugins-js/**" location="/WEB-INF/plugins/js/"/>
+    <mvc:resources mapping="/plugins-css/**" location="/WEB-INF/plugins/css/"/>
+    <mvc:default-servlet-handler/>
+    <bean
+            class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+    <!-- 视图解析器策略 和 视图解析器,默认的视图解析器 在上边的解析错误时使用 (默认使用html) -->
+    <bean id="defaultViewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="contentType" value="text/html"/>
+        <property name="prefix" value="/WEB-INF/views/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="order" value="2"/>
+    </bean>
+    <!-- 处理JSON数据转换的 -->
+    <bean
+            class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean
+                        class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+                <bean
+                        class="org.springframework.http.converter.StringHttpMessageConverter">
+                    <property name="supportedMediaTypes">
+                        <list>
+                            <value>text/html;charset=UTF-8</value>
+                            <value>text/plain;charset=UTF-8</value>
+                            <value>application/json;charset=UTF-8</value>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass">
+            <value>org.springframework.web.servlet.view.tiles3.TilesView</value>
+        </property>
+        <property name="order" value="0"/>
+    </bean>
+
+    <bean id="tilesConfigurer"
+          class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="completeAutoload" value="true"/>
+    </bean>
+</beans>  

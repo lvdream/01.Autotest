@@ -1,5 +1,7 @@
 package saul.app.autotest.model;
 
+import saul.app.autotest.utils.Page;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,8 @@ public class CmtbDictionaryCriteria {
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
+
+    protected Page page;
 
     public CmtbDictionaryCriteria() {
         oredCriteria = new ArrayList<Criteria>();
@@ -61,6 +65,14 @@ public class CmtbDictionaryCriteria {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
+    }
+
+    public Page getPage() {
+        return page;
+    }
+
+    public void setPage(Page page) {
+        this.page = page;
     }
 
     protected abstract static class GeneratedCriteria {

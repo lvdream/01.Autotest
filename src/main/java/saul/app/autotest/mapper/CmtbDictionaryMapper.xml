@@ -38,7 +38,7 @@
                                     </foreach>
                                 </when>
                             </choose>
-                        </foreach>
+            </foreach>
                     </trim>
                 </if>
             </foreach>
@@ -68,7 +68,7 @@
                                     </foreach>
                                 </when>
                             </choose>
-                        </foreach>
+            </foreach>
                     </trim>
                 </if>
             </foreach>
@@ -91,6 +91,9 @@
         </if>
         <if test="orderByClause != null">
             order by ${orderByClause}
+        </if>
+        <if test="page != null">
+            limit #{page.begin} , #{page.length}
         </if>
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
@@ -206,31 +209,31 @@
                 cd_id = #{record.cdId,jdbcType=INTEGER},
             </if>
             <if test="record.cdName != null">
-                cd_name = #{record.cdName,jdbcType=VARCHAR},
+        cd_name = #{record.cdName,jdbcType=VARCHAR},
             </if>
             <if test="record.cdType != null">
-                cd_type = #{record.cdType,jdbcType=VARCHAR},
+        cd_type = #{record.cdType,jdbcType=VARCHAR},
             </if>
             <if test="record.cdFIds != null">
-                cd_f_ids = #{record.cdFIds,jdbcType=VARCHAR},
+        cd_f_ids = #{record.cdFIds,jdbcType=VARCHAR},
             </if>
             <if test="record.cdValue != null">
-                cd_value = #{record.cdValue,jdbcType=VARCHAR},
+        cd_value = #{record.cdValue,jdbcType=VARCHAR},
             </if>
             <if test="record.cdText != null">
-                cd_text = #{record.cdText,jdbcType=VARCHAR},
+        cd_text = #{record.cdText,jdbcType=VARCHAR},
             </if>
             <if test="record.cdStatus != null">
-                cd_status = #{record.cdStatus,jdbcType=VARCHAR},
+        cd_status = #{record.cdStatus,jdbcType=VARCHAR},
             </if>
             <if test="record.cdCreatetime != null">
-                cd_createtime = #{record.cdCreatetime,jdbcType=VARCHAR},
+        cd_createtime = #{record.cdCreatetime,jdbcType=VARCHAR},
             </if>
             <if test="record.cdCreateuser != null">
-                cd_createuser = #{record.cdCreateuser,jdbcType=VARCHAR},
+        cd_createuser = #{record.cdCreateuser,jdbcType=VARCHAR},
             </if>
             <if test="record.cdUpdatetime != null">
-                cd_updatetime = #{record.cdUpdatetime,jdbcType=VARCHAR},
+        cd_updatetime = #{record.cdUpdatetime,jdbcType=VARCHAR},
             </if>
             <if test="record.cdUpdateuser != null">
                 cd_updateuser = #{record.cdUpdateuser,jdbcType=VARCHAR},

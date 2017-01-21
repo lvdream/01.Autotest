@@ -20,7 +20,7 @@ import java.util.List;
 
 public final class MySQLPaginationPlugin extends PluginAdapter {
 
-    private static final String PAGEINFO = "saul.app.auto.utils.Page";
+    private static final String PAGEINFO = "saul.app.autotest.utils.Page";
 
     @Override
     public boolean modelExampleClassGenerated(TopLevelClass topLevelClass,

@@ -7,6 +7,288 @@
     <groupId>saul.app</groupId>
     <artifactId>autotest</artifactId>
     <version>v0.1</version>
+    <packaging>war</packaging>
+    <properties>
+        <java.version>1.6</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <mybatis.version>3.3.1</mybatis.version>
+        <spring.version>4.2.4.RELEASE</spring.version>
+        <junit.version>4.11</junit.version>
+        <slf4j.version>1.7.7</slf4j.version>
+        <tiles.version>3.0.5</tiles.version>
+    </properties>
+    <dependencies>
+
+        <!-- spring related library -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
 
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+
+
+        <!-- Tiles Core -->
+        <!-- http://mvnrepository.com/artifact/org.apache.tiles/tiles-core -->
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-core</artifactId>
+            <version>${tiles.version}</version>
+        </dependency>
+
+        <!-- Tiles Servlet -->
+        <!-- http://mvnrepository.com/artifact/org.apache.tiles/tiles-servlet -->
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-servlet</artifactId>
+            <version>${tiles.version}</version>
+        </dependency>
+
+        <!-- Tiles JSP -->
+        <!-- http://mvnrepository.com/artifact/org.apache.tiles/tiles-jsp -->
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-jsp</artifactId>
+            <version>${tiles.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-extras</artifactId>
+            <version>${tiles.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.7</version>
+        </dependency>
+
+
+    </dependencies>
+
+
+    <build>
+        <filters>
+            <filter>src/main/filters-${active.profile}.properties</filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.tld</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.tld</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.xls</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- add by saul for different env packaging action -->
+    <profiles>
+        <!-- 开发环境，默认激活 -->
+        <profile>
+            <id>dev</id>
+            <properties>
+                <active.profile>dev</active.profile>
+            </properties>
+            <!-- 把当前profile设置为默认profile，可以同时这是多个为默认-->
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <!-- 测试环境 -->
+        <profile>
+            <id>test194</id>
+            <properties>
+                <active.profile>test194</active.profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>test141</id>
+            <properties>
+                <active.profile>test141</active.profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>test81</id>
+            <properties>
+                <active.profile>test81</active.profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>test13</id>
+            <properties>
+                <active.profile>test13</active.profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>test72</id>
+            <properties>
+                <active.profile>test72</active.profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>test82</id>
+            <properties>
+                <active.profile>test82</active.profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>test82_02</id>
+            <properties>
+                <active.profile>test82_02</active.profile>
+            </properties>
+        </profile>
+        <!-- 生产环境 -->
+        <profile>
+            <id>product</id>
+            <properties>
+                <active.profile>product</active.profile>
+            </properties>
+        </profile>
+    </profiles>
 </project>

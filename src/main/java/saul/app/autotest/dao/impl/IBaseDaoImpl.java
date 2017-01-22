@@ -1,6 +1,6 @@
 package saul.app.autotest.dao.impl;
 
-import lombok.Data;
+import org.springframework.stereotype.Repository;
 import saul.app.autotest.dao.IBaseDao;
 import saul.app.autotest.dao.IBaseMapper;
 import saul.app.autotest.utils.AutotestException;
@@ -16,14 +16,20 @@ import java.util.List;
  * @param <F>
  */
 @SuppressWarnings("unused")
-@Data
+@Repository("baseDao")
 public abstract class IBaseDaoImpl<T, F> implements IBaseDao<T, F> {
+
     private IBaseMapper<T, F> iBaseMapper;
     private final int returncode = -1;
 
-    public IBaseDaoImpl(IBaseMapper<T, F> mapper) {
-        super();
-        this.iBaseMapper = mapper;
+
+
+    public IBaseMapper<T, F> getiBaseMapper() {
+        return iBaseMapper;
+    }
+
+    public void setiBaseMapper(IBaseMapper<T, F> iBaseMapper) {
+        this.iBaseMapper = iBaseMapper;
     }
 
     @Override
@@ -67,9 +73,9 @@ public abstract class IBaseDaoImpl<T, F> implements IBaseDao<T, F> {
     }
 
     @Override
-    public T ReadSingle(int id) throws AutotestException {
-        if (id > 0) {
-            return iBaseMapper.selectByPrimaryKey(id);
+    public T ReadSingle(F exampleCriteria) throws AutotestException {
+        if (exampleCriteria != null) {
+            return iBaseMapper.selectByExample(exampleCriteria).get(0);
         }
         return null;
     }

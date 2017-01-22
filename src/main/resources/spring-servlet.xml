@@ -16,7 +16,7 @@
     <!-- 默认的注解映射的支持 ,它会自动注册DefaultAnnotationHandlerMapping 与AnnotationMethodHandlerAdapter -->
     <mvc:annotation-driven/>
     <context:annotation-config/>
-    <context:component-scan base-package="com.fangda.skylot.web">
+    <context:component-scan base-package="saul.app.autotest.web">
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="annotation"

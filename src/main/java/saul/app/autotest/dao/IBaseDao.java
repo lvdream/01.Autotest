@@ -107,11 +107,11 @@ public interface IBaseDao<T, F> {
     /**
      * 依据属性,获取单独对象
      *
-     * @param id    序号
+     * @param exampleCriteria
      * @throws AutotestException 项目异常
      * @return
      */
-    T ReadSingle(int id) throws AutotestException;
+    T ReadSingle(F exampleCriteria) throws AutotestException;
 
     /**
      * 依据条件,获取统计的条数

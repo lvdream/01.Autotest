@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="saul.app.autotest.dao.CmtbDictionaryMapper">
+<mapper namespace="saul.app.autotest.dao.dictionary.CmtbDictionaryMapper">
     <resultMap id="BaseResultMap" type="saul.app.autotest.model.CmtbDictionary">
         <id column="cd_id" property="cdId" jdbcType="INTEGER"/>
         <result column="cd_name" property="cdName" jdbcType="VARCHAR"/>
